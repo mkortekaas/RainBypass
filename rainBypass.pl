@@ -155,7 +155,7 @@ sub parseWeather($) {
 
     ## wunderground 10 day forecast
     my $weatherURL = "http://api.wunderground.com/api/" . $globalConfigJson->{wundergroundKey} . "/forecast10day/q/" . $globalConfigJson->{zipCode} . ".json";
-    if ($DEBUG) { print $weatherURL; }
+    print "\tFetching: $weatherURL\n";
 
 #    my $json = read_file($inFile) || dieWeather "Can't open $inFile for reading";
     my $json = get( $weatherURL ) || dieWeather "Could not get $weatherURL";
@@ -177,6 +177,15 @@ sub parseWeather($) {
 	$qpf_allday = $days->{qpf_allday}->{in};
 	$low = $days->{low}->{fahrenheit};
 
+	# May 2014: qpf_allday seems to be returning 'null' instead of the daily value
+	# calculate out if that is the case
+	if (!$qpf_allday) {
+	    my ($qpf_day, $qpf_night);
+	    $qpf_day   = ($days->{qpf_day}->{in}) ? $days->{qpf_day}->{in} : 0;
+	    $qpf_night = ($days->{qpf_night}->{in}) ? $days->{qpf_night}->{in} : 0;
+	    $qpf_allday = $qpf_day + $qpf_night;
+	}
+	    
 	if ($DEBUG) {
 	    print "$count\t$year$month$day\t$epoch\t$icon\t$chance\t$qpf_allday\t$low\n";
 	}
@@ -255,7 +264,7 @@ sub initConfig($) {
 
     # PIN numbers to use are the GPIO pin numbers, not the wiringPi or Phys ones
     #  to see use 'gpio readall'
-    my %json_string = ( wundergroundKey => "XXXX" ,
+    my %json_string = ( wundergroundKey => "PUT_YOUR_KEY_HERE" ,
 			zipCode => "06840" ,
 			sprinklerDisabled => 0 ,
 			daysDisabled => 2 ,
