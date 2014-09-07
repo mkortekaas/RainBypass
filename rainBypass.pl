@@ -165,7 +165,7 @@ sub parseWeather($) {
     if ($DEBUG) { print Dumper $decodedJson; }
 
     my ($count, $days, $icon, $chance, $month, $day, $year, $epoch, $qpf_allday, $low);
-    for ( $count = 0 ; $count < $globalConfigJson->{daysDisabled} ; $count++ ) {
+    for ( $count = 0 ; $count < $globalConfigJson->{hoursDisabled} ; $count++ ) {
 	$days = @{$decodedJson->{'forecast'}->{'simpleforecast'}->{'forecastday'}}[$count];
 
 	$icon = $days->{icon};
@@ -223,7 +223,7 @@ sub parseWeather($) {
 	    $disableSprinkler = 1;
 	} elsif ($globalConfigJson->{sprinklerDisabled}) {
 	    my $currentEpoch = $decodedJson->{'forecast'}->{'simpleforecast'}->{'forecastday'}[0]->{date}->{epoch};
-	    my $epochVariance = $globalConfigJson->{daysDisabled} * 60 * 60 * 24;
+	    my $epochVariance = $globalConfigJson->{hoursDisabled} * 60 * 60 ;
 	    my $lastRain = $globalConfigJson->{lastRainEpoch};
 	    my $newEpoch = $currentEpoch - $epochVariance;
 	    
@@ -267,7 +267,7 @@ sub initConfig($) {
     my %json_string = ( wundergroundKey => "PUT_YOUR_KEY_HERE" ,
 			zipCode => "06840" ,
 			sprinklerDisabled => 0 ,
-			daysDisabled => 2 ,
+			hoursDisabled => 36 ,
 			relayPin => 22 ,
 			redLedPin => 27 ,
 			greenLedPin => 17 , 
