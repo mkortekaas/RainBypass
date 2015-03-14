@@ -301,7 +301,7 @@ sub usage() {
     exit -1;
 }
 
-$Getopt::Std::opt_c = "rainBypass.config.json";
+$Getopt::Std::opt_c = "rainBypass.config";
 $Getopt::Std::opt_h = "";
 $Getopt::Std::opt_i = "";
 $Getopt::Std::opt_T = "";
