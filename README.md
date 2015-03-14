@@ -47,7 +47,7 @@ To run the script itself once you've done the above:
 rainBypass.pl -r -c rainBypass.config
 
 I have this set to run hourly and my crontab (roots) looks like:
-31 * * * * /home/pi/rainBypass/rainBypass.pl -r -c /home/pi/rainBypass/rainBypass.config >> /var/log/rainBypass.log 2>&1
+31 * * * * /home/pi/git/RainBypass/rainBypass.pl -r -c /home/pi/git/RainBypass/rainBypass.config >> /var/log/rainBypass.log 2>&1
 
 
 --
