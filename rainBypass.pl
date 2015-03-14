@@ -308,7 +308,7 @@ $Getopt::Std::opt_T = "";
 $Getopt::Std::opt_r = "";
 $Getopt::Std::opt_K = "";
 $Getopt::Std::opt_Z = "06840";
-Getopt::Std::getopts("rc:hiT");
+Getopt::Std::getopts("rc:hiTK:Z:");
 my $configFile = $Getopt::Std::opt_c;
 my $init = $Getopt::Std::opt_i;
 my $usage  = $Getopt::Std::opt_h;
