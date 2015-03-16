@@ -24,14 +24,7 @@ together to be more stable, but it's mounted in a box in my garage and using the
 breadboard made it easier to put together/debug. Plus my soldering skills were already
 tested building the prototyping kit 
 
-the diagram looks like:
-RPi Pin 1 (+3.3V): to relay and diode, then to transistor leg1
-GPIO Pin 22 (+3.3V): to 1k resistor then to transistor center
-GPIO Pin 27 (+3.3V): to red led, then to 51 ohm, then to ground
-GPIO Pin 17 (+3.3V): to green led, then to 51 ohm, then to ground
-GPIO Pin 10 (+3.3V): to yellow led, then to 51 ohm, then to ground
-RPi Pin 6 (ground): to led(s) above and to 3rd leg on transitor
-
+The file h20-diagram.png will show you the wiring diagram (Copied with permission)
 
 --
 
@@ -79,8 +72,8 @@ rainBypass.pl -r -c rainBypass.config
 I have this set to run hourly and my crontab (roots) looks like:
 31 * * * * /home/pi/git/RainBypass/rainBypass.pl -r -c /home/pi/git/RainBypass/rainBypass.config >> /var/log/rainBypass.log 2>&1
 
-
 --
 
+# The MIT License (MIT)                                                                                                                                       #                                                                                                                                                             # Copyright (c) 2015 Mark Kortekaas                                                                                                                           #                                                                                                                                                             # Permission is hereby granted, free of charge, to any person obtaining a copy                                                                                # of this software and associated documentation files (the "Software"), to deal                                                                               # in the Software without restriction, including without limitation the rights                                                                                # to use, copy, modify, merge, publish, distribute, sublicense, and/or sell                                                                                   # copies of the Software, and to permit persons to whom the Software is                                                                                       # furnished to do so, subject to the following conditions:                                                                                                    #                                                                                                                                                             # The above copyright notice and this permission notice shall be included in                                                                                  # all copies or substantial portions of the Software.                                                                                                         #                                                                                                                                                             # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR                                                                                  # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,                                                                                    # FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE                                                                                 # AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER                                                                                      # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,                                                                               # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN                                                                                   # THE SOFTWARE.   
 
 
