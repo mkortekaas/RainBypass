@@ -8,11 +8,11 @@ http://www.thirdeyevis.com/pi-page-3.php
   it was easier for me to rewrite this in perl
 
 For parts you need:
-- Pi Model B (the 2 may work, haven't tested) (adafruit: 
-- adafruit prototyping Pi Plate Kit (adafruit: 801)
+- Pi Model B or Pi 2 
+- adafruit prototyping Pi Plate Kit (adafruit: 801) (or equiv)
 - tiny breadboard (adafruit ID:65)
 - assorted 5mm LEDs (i got from Amazon)
-- 40P dupont cable 200nm male to female (I pulled indivdual cables off for my need)
+- 40P dupont cable 200nm male to female (pull cables off as required)
 - 1x SainSmart 2-Channel Relay Module (http://www.amazon.com/gp/product/B0057OC6D8/ref=oh_aui_detailpage_o01_s00?ie=UTF8&psc=1) 
 - 1x 1k resistor
 - 3x 51 ohm resistors
