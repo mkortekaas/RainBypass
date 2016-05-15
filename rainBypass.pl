@@ -135,10 +135,8 @@ sub sprinklerEnable() {
 ##############################
 sub verifyStatus() {
     if ($globalConfigJson->{sprinklerDisabled}) {
-	print "\tverifyStatus(): sprinkler is OFF\n";
 	sprinklerDisable();
     } else {
-	print "\tverifyStatus(): sprinkler is ON\n";
 	sprinklerEnable();
     }
 }
@@ -208,7 +206,7 @@ sub parseWeather($) {
 		$globalConfigJson->{sprinklerDisabled} = 1;
 		$disableSprinkler = 1;
 	    } else {
-		print "\t+ $count: chance of rain $chance pct\n";
+		print "\tDay +$count: chance of rain: $chance pct\n";
 	    }
 	}
     }
@@ -228,10 +226,10 @@ sub parseWeather($) {
 	    my $newEpoch = $currentEpoch - $epochVariance;
 	    
 	    if ($DEBUG){
-		print "\t\t\tcurrentEpoch:\t$currentEpoch\n";
+		print "\t\t\tcurrentEpoch:\t" . ctime($currentEpoch) . "\n";
 		print "\t\t\tepochVariance:\t$epochVariance\n";
-		print "\t\t\tlastRain:\t$lastRain\n";
-		print "\t\t\tnewEpoch:\t$newEpoch\n";
+		print "\t\t\tlastRain:\t" . ctime($lastRain) . "\n";
+		print "\t\t\tnewEpoch:\t" . ctime($newEpoch) . "\n";
 	    }
 	    
 	    if ($globalConfigJson->{lastRainEpoch} < $newEpoch ) {
@@ -239,6 +237,8 @@ sub parseWeather($) {
 		print "\tRE-ENABLE Sprinkler\t$epoch\n";
 		$globalConfigJson->{sprinklerDisabled} = 0;
 		$enableSprinkler = 1;
+	    } else {
+		print "\tWill renenable at " . ctime($currentEpoch) . "\n";
 	    }
 	}
     }
