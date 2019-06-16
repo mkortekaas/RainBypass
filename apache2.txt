@@ -1,0 +1,26 @@
+apache2.conf
+<Directory /home/pi/git/RainBypass/>
+        AddHandler cgi-script .pl
+        Options +ExecCGI
+        AllowOverride None
+        Require all granted
+</Directory>
+
+................................
+conf-available/serve-cgi-bin.conf
+        <IfDefine ENABLE_USR_LIB_CGI_BIN>
+                <Directory "/home/pi/git/RainBypass">
+                        AllowOverride None
+                        Options +ExecCGI -MultiViews +SymLinksIfOwnerMatch
+                        Require all granted
+                </Directory>
+        </IfDefine>
+
+................................
+sites-enabled/000-default.conf
+DocumentRoot /home/pi/git/RainBypass
+
+................................
+a2enmod cgi
+systemctl restart apache2
+
