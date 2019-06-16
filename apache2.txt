@@ -24,3 +24,8 @@ DocumentRoot /home/pi/git/RainBypass
 a2enmod cgi
 systemctl restart apache2
 
+................................
+added to /etc/crontab so takes effect on restart:
+@reboot root /home/pi/git/RainBypass/setSprinkler.pl -e
+
+
