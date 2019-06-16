@@ -30,6 +30,8 @@ permission)
 
 # Getting Started
 
+NOTE: as of late 2018 wunderground no longer has API access - the rest of this document is thus moot :-/
+
 Create a developer key @ weather underground to obtain the weather data.
 
 To see if it works run the following command and verify the returned JSON
@@ -74,7 +76,7 @@ I have this set to run hourly and my crontab (roots) looks like:
 
 # MIT LICENSE
 
-Copyright (c) 2015 Mark Kortekaas
+Copyright (c) 2019 Mark Kortekaas
 
 Permission is hereby granted, free of charge, to any person obtaining a
 copy of this software and associated documentation files (the "Software"),
