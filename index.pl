@@ -26,12 +26,29 @@ use strict;
 use warnings;
 use Device::BCM2835;
 
+## START of HTML HEADER
+
 print "Content-type: text/html\n\n";
-print "<html>\n<body>\n";
+print "<html>\n";
 print "<div style=\"width:100%; font-size:40px; font-weight:bold; text-align:center;\">";
-print "Click to <a href=\"index.pl?enable\">enable</a> sprinkler<br>";
-print "Click to <a href=\"index.pl?disable\">disable</a> sprinkler<br>";
-print "<hr>";
+print "<style>
+.button {
+  border: none;
+  color: black;
+  padding: 34px 34px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 64px;
+  margin: 4px 2px;
+  cursor: pointer;
+  width: 100%;
+}
+.button1 {background-color: #4CAF50; /* Green */;}
+.button2 {background-color: #f44336; /* Red */;}
+</style>\n<body>\n";
+
+## End of HTML HEADER
 
 my $queryString = $ENV{'QUERY_STRING'};
 
@@ -40,6 +57,10 @@ my $relayPin = 22;
 my $redPin = 27;
 my $greenPin = 17;
 my $yellowPin = 10;
+
+print "<a href=\"index.pl?enable\" class=\"button button1\">Enable Sprinkler</a><br>";
+print "<a href=\"index.pl?disable\" class=\"button button2\">Disable Sprinkler</a><br>";
+print "<hr>";
 
 if ($queryString =~ m/enable/) {
     sprinklerEnable($redPin, $yellowPin, $greenPin, $relayPin);
@@ -64,7 +85,15 @@ sub readLEDs($$$$) {
     my $yellow = Device::BCM2835::gpio_lev($yellowPin);
     my $green = Device::BCM2835::gpio_lev($greenPin);
     my $relay = Device::BCM2835::gpio_lev($relayPin);
-    print "Red:\t$red<br>Yellow:\t$yellow<br>Green:\t$green<br>Relay:\t$relay<br>";
+
+    if ($red && $relay && !$green) {
+	print "Current Status is: disabled<br>";
+    } elsif (!$red && !$relay && $green) {
+	print "Current Status is: enabled<br>";
+    } else {
+	print "Odd Status -- UNKNOWN<br>";
+    }
+    print "(R:$red-Y:$yellow-G:$green-Relay:$relay)<br>";
 }    
     
 ##############################
