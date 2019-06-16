@@ -63,13 +63,13 @@ print "<a href=\"index.pl?disable\" class=\"button button2\">Disable Sprinkler</
 print "<hr>";
 
 if ($queryString =~ m/enable/) {
-    sprinklerEnable($redPin, $yellowPin, $greenPin, $relayPin);
+    &sprinklerEnable($redPin, $yellowPin, $greenPin, $relayPin);
 }
 if ($queryString =~ m/disable/) {
-    sprinklerDisable($redPin, $yellowPin, $greenPin, $relayPin);
+    &sprinklerDisable($redPin, $yellowPin, $greenPin, $relayPin);
 }
 if ($queryString =~ m/test/) { 
-    testLEDs($redPin, $yellowPin, $greenPin, $relayPin);
+    &testLEDs($redPin, $yellowPin, $greenPin, $relayPin);
 }
 
 &readLEDs($redPin, $yellowPin, $greenPin, $relayPin);
